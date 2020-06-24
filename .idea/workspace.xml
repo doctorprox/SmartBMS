@@ -7,10 +7,27 @@
   </component>
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_LOG_LEVEL" value="info" />
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Firebase" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98b4055d-2cf1-43c7-9eac-cb9edbb0b36c" name="Default Changelist" comment="" />
+    <list default="true" id="98b4055d-2cf1-43c7-9eac-cb9edbb0b36c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Android_BluetoothLE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Application/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/src/main/java/com/example/android/bluetoothlegatt/DeviceControlActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Application/src/main/java/com/example/android/bluetoothlegatt/DeviceControlActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/src/main/res/layout/main_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Application/src/main/res/layout/main_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/src/main/res/menu/gatt_services.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Application/src/main/res/menu/gatt_services.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/src/main/res/menu/main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Application/src/main/res/menu/main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Application/src/main/res/values/strings.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,7 +55,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1dSqVxouF3AKnMsedkcWLRGk6hp" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -48,6 +69,7 @@
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="XPH5T19409013251" />
     <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-06-20T08:59:30.637Z" />
     <property name="ResourceManagerPrefKey.ResourceType" value="LAYOUT" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="D:/AppData/Local/Android/Sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
@@ -142,22 +164,22 @@
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
     <state x="771" y="296" key="FileChooserDialogImpl/62.0.1858.1080/1982.2.1858.1080@62.0.1858.1080" timestamp="1592745721984" />
-    <state width="1798" height="292" key="GridCell.Tab.0.bottom" timestamp="1593031917289">
+    <state width="1798" height="292" key="GridCell.Tab.0.bottom" timestamp="1593037932395">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
-    <state width="1798" height="292" key="GridCell.Tab.0.bottom/62.0.1858.1080/1982.2.1858.1080@62.0.1858.1080" timestamp="1593031917289" />
-    <state width="1798" height="292" key="GridCell.Tab.0.center" timestamp="1593031917288">
+    <state width="1798" height="292" key="GridCell.Tab.0.bottom/62.0.1858.1080/1982.2.1858.1080@62.0.1858.1080" timestamp="1593037932395" />
+    <state width="1798" height="292" key="GridCell.Tab.0.center" timestamp="1593037932394">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
-    <state width="1798" height="292" key="GridCell.Tab.0.center/62.0.1858.1080/1982.2.1858.1080@62.0.1858.1080" timestamp="1593031917288" />
-    <state width="1798" height="292" key="GridCell.Tab.0.left" timestamp="1593031917288">
+    <state width="1798" height="292" key="GridCell.Tab.0.center/62.0.1858.1080/1982.2.1858.1080@62.0.1858.1080" timestamp="1593037932394" />
+    <state width="1798" height="292" key="GridCell.Tab.0.left" timestamp="1593037932394">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
-    <state width="1798" height="292" key="GridCell.Tab.0.left/62.0.1858.1080/1982.2.1858.1080@62.0.1858.1080" timestamp="1593031917288" />
-    <state width="1798" height="292" key="GridCell.Tab.0.right" timestamp="1593031917289">
+    <state width="1798" height="292" key="GridCell.Tab.0.left/62.0.1858.1080/1982.2.1858.1080@62.0.1858.1080" timestamp="1593037932394" />
+    <state width="1798" height="292" key="GridCell.Tab.0.right" timestamp="1593037932395">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
-    <state width="1798" height="292" key="GridCell.Tab.0.right/62.0.1858.1080/1982.2.1858.1080@62.0.1858.1080" timestamp="1593031917289" />
+    <state width="1798" height="292" key="GridCell.Tab.0.right/62.0.1858.1080/1982.2.1858.1080@62.0.1858.1080" timestamp="1593037932395" />
     <state x="647" y="253" key="run.anything.popup" timestamp="1593028174363">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>

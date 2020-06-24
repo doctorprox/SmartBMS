@@ -26,4 +26,9 @@
           android:title="@string/menu_disconnect"
           android:orderInCategory="101"
           android:showAsAction="ifRoom|withText"/>
+    <item
+        android:id="@+id/menu_log"
+        android:title="@string/menu_log"
+        android:checkable="true"
+        android:showAsAction="never" />
 </menu>

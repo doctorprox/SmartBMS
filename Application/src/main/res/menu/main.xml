@@ -35,6 +35,5 @@
         android:id="@+id/menu_filter"
         android:checkable="true"
         android:title="@string/menu_switch"
-        app:actionLayout="@layout/switch_item"
-        app:showAsAction="always" />
+        app:showAsAction="never" />
 </menu>

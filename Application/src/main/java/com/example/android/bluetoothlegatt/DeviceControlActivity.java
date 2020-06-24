@@ -25,6 +25,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -54,17 +55,24 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 
+import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * For a given BLE device, this Activity provides the user interface to connect, display data,
@@ -72,7 +80,7 @@ import java.util.TimerTask;
  * communicates with {@code BluetoothLeService}, which in turn interacts with the
  * Bluetooth LE API.
  */
-public class DeviceControlActivity extends Activity {
+public class DeviceControlActivity<CSVWriter> extends Activity {
     private final static String TAG = DeviceControlActivity.class.getSimpleName();
 
     public static final String EXTRAS_DEVICE_NAME = "DEVICE_NAME";
@@ -114,6 +122,15 @@ public class DeviceControlActivity extends Activity {
     private Timer mTimer1;
     private TimerTask mTt1;
 
+    private boolean SETTING_LOGGING_ENABLED;
+    SharedPreferences device_settings;
+
+    String baseDir = android.os.Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "SmartBMS";
+    String fileName;
+    String filePath;
+    File f;
+    CSVWriter writer;
+
     bms_data adapter;
 
     // Code to manage Service lifecycle.
@@ -137,8 +154,52 @@ public class DeviceControlActivity extends Activity {
         }
     };
 
+    private void loadsettings() throws IOException {
+        device_settings = getSharedPreferences("scan_settings",
+                Context.MODE_PRIVATE);
+        SETTING_LOGGING_ENABLED = device_settings.getBoolean("logging",false);
+        Log.d(TAG,"SETTINGS: " + Boolean.toString(SETTING_LOGGING_ENABLED));
+
+        try {
+            // if file doesnt exists, then create it
+            fileName = getCurrentTimeStamp() + " " + mDeviceName + ".csv";
+            filePath = baseDir + File.separator + fileName;
+            f= new File(baseDir);
+                f.mkdirs();
+
+                f= new File(filePath);
+
+            if (!f.exists()) {
+                f.createNewFile();
+            }
+        } catch (IOException e) {
+            Toast.makeText(getApplicationContext(),"File access error.",Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
+    }
+
+    private void save_settings(){
+        SharedPreferences.Editor editor = device_settings.edit();
+        editor.putBoolean("logging", SETTING_LOGGING_ENABLED);
+        editor.commit();
+    }
+
+    public static String getCurrentTimeStamp(){
+        try {
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String currentDateTime = dateFormat.format(new Date()); // Find todays date
+
+            return currentDateTime;
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return null;
+        }
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    private void messageHandler() {
+    private void messageHandler() throws IOException {
         //switch (receiveBuffer[])
         if (receiveBuffer != null) {
 
@@ -174,8 +235,13 @@ public class DeviceControlActivity extends Activity {
                     Log.d(TAG,"P = " + Integer.toString(power));
                     Log.d(TAG,"Ah = " + Float.toString(remcap));
                     Log.d(TAG,"T = " + Float.toString(temp1));
-
                      */
+                    if (SETTING_LOGGING_ENABLED) {
+                        FileWriter fw = new FileWriter(f.getAbsoluteFile(), true);
+                        BufferedWriter bw = new BufferedWriter(fw);
+                        bw.write(getCurrentTimeStamp() + "," + Byte.toString(soc) + "," + Float.toString(voltage) + "," + Float.toString(current) + "," + Integer.toString(power) + "," + Float.toString(remcap) + "," + Float.toString(temp1) + "\n");
+                        bw.close();
+                    }
                     adapter.setRemCap(remcap);
                     adapter.setPower(power);
                     adapter.setSoC(soc);
@@ -201,7 +267,7 @@ public class DeviceControlActivity extends Activity {
                     BarData data = new BarData(set);
                     data.setBarWidth(0.9f); // set custom bar width
                     data.setHighlightEnabled(false);
-                    
+
                     final String[] quarters = new String[] { "C1", "C2", "C3", "C4","C5","C6", "C7", "C8", "C9", "C10","C11","C12","C13", "C14"};
                     ValueFormatter formatter = new ValueFormatter() {
                         @Override
@@ -340,7 +406,11 @@ public class DeviceControlActivity extends Activity {
 
                 if(rxdatatemp[rxdatatemp.length-1] ==0x77) {
                     //receiveBuffer = receiveBuffer.substring(0, receiveBuffer.length() - 1);
-                    messageHandler();
+                    try {
+                        messageHandler();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     receiveBuffer = "";
                 }
             }
@@ -401,6 +471,11 @@ public class DeviceControlActivity extends Activity {
         mDeviceName = intent.getStringExtra(EXTRAS_DEVICE_NAME);
         mDeviceAddress = intent.getStringExtra(EXTRAS_DEVICE_ADDRESS);
 
+        try {
+            loadsettings();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         // Sets up UI references.
         ((TextView) findViewById(R.id.device_address)).setText(mDeviceAddress);
         mConnectionState = (TextView) findViewById(R.id.connection_state);
@@ -470,6 +545,7 @@ public class DeviceControlActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.gatt_services, menu);
+        menu.findItem(R.id.menu_log).setChecked(SETTING_LOGGING_ENABLED);
         if (mConnected) {
             menu.findItem(R.id.menu_connect).setVisible(false);
             menu.findItem(R.id.menu_disconnect).setVisible(true);
@@ -493,6 +569,11 @@ public class DeviceControlActivity extends Activity {
                 return true;
             case android.R.id.home:
                 onBackPressed();
+                return true;
+            case R.id.menu_log:
+                SETTING_LOGGING_ENABLED = !item.isChecked();
+                item.setChecked(SETTING_LOGGING_ENABLED);
+                save_settings();
                 return true;
         }
         return super.onOptionsItemSelected(item);
